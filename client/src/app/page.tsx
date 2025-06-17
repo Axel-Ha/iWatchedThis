@@ -1,28 +1,15 @@
 'use client'
 
-import React, { useEffect, useState } from "react";
-
-type Anime = {
-  id: number;
-  title: { english: string }
-  coverImage: { large: string }
-  episodes: number
-}
+import React from "react";
+import BannerAnimes from "@/components/page/BannerAnimes";
+import { useAnimes } from "@/components/contexts/AnimesContext";
 
 export default function Home() {
 
-  const [animes, setAnimes] = useState<Anime[]>([]);
-
-  useEffect(() => {
-    fetch('http://localhost:5000/api/anilist/trending')
-      .then((res) => res.json())
-      .then((data) => setAnimes(data))
-      .catch((err) => console.error('Failed to load trending animes', err));
-  }, []);
-
+  const { trendingAnimes, popularAnimes, upcomingAnimes, currentSeasonAnimes } = useAnimes();
   return (
     <div className="flex flex-col items-center justify-center">
-      <main className="">
+      <main>
         <div className="flex flex-col items-center justify-center mb-10">
           <h1 className="text-4xl font-bold text-white">The next-generation anime, serie and movie platform</h1>
           <p className="text-xl home-page-text ">
@@ -65,27 +52,24 @@ export default function Home() {
             Customize your scoring system, title format, color scheme, and much more! Also, we have a dark mode.
           </p>
         </div>
+
         <div>
           <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
             Join Now
           </button>
         </div>
+
         <p className="main-text text-2xl font-bold home-page-title mt-10">Trending Animes</p>
-        <div className="flex flex-row items-center justify-center gap-5">
-          {animes.map((anime) => (
-            <div key={anime.id} className="flex flex-col w-52 h-[350px] justify-between">
-              <img
-                src={anime.coverImage.large}
-                alt={anime.title.english}
-                className="rounded-lg object-cover w-52 h-72"
-              />
-              <div className="main-text font-bold w-52 ">
-                <p className="mt-2">{anime.title.english}</p>
-                <p className="mt-2">{anime.episodes} Episodes in total</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <BannerAnimes animes={trendingAnimes} />
+
+        <p className="main-text text-2xl font-bold home-page-title mt-10">Current Season Animes</p>
+        <BannerAnimes animes={currentSeasonAnimes} />
+
+        <p className="main-text text-2xl font-bold home-page-title mt-10">Upcoming Animes</p>
+        <BannerAnimes animes={upcomingAnimes} />
+
+        <p className="main-text text-2xl font-bold home-page-title mt-10">All time popular animes</p>
+        <BannerAnimes animes={popularAnimes} />
       </main>
     </div>
   );

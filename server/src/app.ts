@@ -1,5 +1,5 @@
 //CONFIGURER L'APPLICATION EXPRESS (MIDDLEWARE, ROUTES, ETC)
-import anilistRoutes from './routes/anilist'
+import animesRoutes from './routes/animes'
 // src/app.ts
 import express from 'express';
 import cors from 'cors';
@@ -16,6 +16,6 @@ app.get('/api', (_req, res) => {
   console.log('hello from our server')
 });
 
-app.use('/api/anilist', anilistRoutes);
+app.use('/api/animes', animesRoutes);
 
 export default app;
