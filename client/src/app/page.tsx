@@ -6,7 +6,7 @@ import { useAnimes } from "@/components/contexts/AnimesContext";
 
 export default function Home() {
 
-  const { trendingAnimes, popularAnimes, upcomingAnimes, currentSeasonAnimes } = useAnimes();
+  const { trendingAnimes, popularAnimes, upcomingAnimes, currentSeasonAnimes, topAnimes } = useAnimes();
   return (
     <div className="flex flex-col items-center justify-center">
       <main>
@@ -58,18 +58,12 @@ export default function Home() {
             Join Now
           </button>
         </div>
-
-        <p className="main-text text-2xl font-bold home-page-title mt-10">Trending Animes</p>
-        <BannerAnimes animes={trendingAnimes} />
-
-        <p className="main-text text-2xl font-bold home-page-title mt-10">Current Season Animes</p>
-        <BannerAnimes animes={currentSeasonAnimes} />
-
-        <p className="main-text text-2xl font-bold home-page-title mt-10">Upcoming Animes</p>
-        <BannerAnimes animes={upcomingAnimes} />
-
-        <p className="main-text text-2xl font-bold home-page-title mt-10">All time popular animes</p>
-        <BannerAnimes animes={popularAnimes} />
+        
+        <BannerAnimes animes={trendingAnimes} titleSection="Trending Animes" />
+        <BannerAnimes animes={currentSeasonAnimes} titleSection="Current Season Animes" />
+        <BannerAnimes animes={upcomingAnimes} titleSection="Upcoming Animes" />
+        <BannerAnimes animes={popularAnimes} titleSection="All time popular animes" />
+        <BannerAnimes animes={topAnimes} titleSection="Top 100 Animes" topAnime={true} />
       </main>
     </div>
   );

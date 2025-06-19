@@ -47,3 +47,14 @@ export async function getUpcomingAnimes() : Promise<AnimesResponse[]> {
         return [];
     }
 }
+
+export async function getTopAnimes() : Promise<AnimesResponse[]> {
+    try {
+        const response = await fetch(`${BASE_URL}/top-animes`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Failed to load upcoming animes', error);
+        return [];
+    }
+}

@@ -1,7 +1,7 @@
 'use client'
 import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
 import { AnimesResponse } from "@/lib/definitions/anime";
-import { getCurrentSeasonAnimes, getPopularAnimes, getTrendingAnimes, getUpcomingAnimes } from "@/services/animesService";
+import { getCurrentSeasonAnimes, getPopularAnimes, getTrendingAnimes, getUpcomingAnimes, getTopAnimes } from "@/services/animesService";
 
 interface AnimesContextType {
   isLoading: boolean;
@@ -11,6 +11,7 @@ interface AnimesContextType {
   popularAnimes: AnimesResponse[];
   upcomingAnimes: AnimesResponse[];
   currentSeasonAnimes: AnimesResponse[];
+  topAnimes: AnimesResponse[];
   addAnime: (anime: AnimesResponse) => Promise<void>;
   removeAnime: (id: string) => Promise<void>;
   updateAnime: (anime: AnimesResponse) => Promise<void>;
@@ -23,6 +24,7 @@ export function AnimesProvider({ children }: { children: ReactNode }) {
   const [popularAnimes, setPopularAnimes] = useState<AnimesResponse[]>([]);
   const [upcomingAnimes, setUpcomingAnimes] = useState<AnimesResponse[]>([]);
   const [currentSeasonAnimes, setCurrentSeasonAnimes] = useState<AnimesResponse[]>([]);
+  const [topAnimes, setTopAnimes] = useState<AnimesResponse[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -30,16 +32,18 @@ export function AnimesProvider({ children }: { children: ReactNode }) {
     setIsLoading(true);
     setError(null);
     try {
-      const [trending, popular, upcoming, current] = await Promise.all([
+      const [trending, popular, upcoming, current, top] = await Promise.all([
         getTrendingAnimes(),
         getPopularAnimes(),
         getUpcomingAnimes(),
         getCurrentSeasonAnimes(),
+        getTopAnimes(),
       ]);
       setTrendingAnimes(trending);
       setPopularAnimes(popular);
       setUpcomingAnimes(upcoming);
       setCurrentSeasonAnimes(current);
+      setTopAnimes(top);
     } catch (err) {
       setError("Erreur lors du chargement des animes.");
     } finally {
@@ -97,6 +101,7 @@ export function AnimesProvider({ children }: { children: ReactNode }) {
         popularAnimes,
         upcomingAnimes,
         currentSeasonAnimes,
+        topAnimes,
         isLoading,
         error,
         fetchAnimes,

@@ -5,6 +5,7 @@
   --foreground: #0B1622;
   --font-color-text-home-page: #ACD5F2; 
   --font-color-title-home-page: #ECF6FE;
+  --font-color-banner: #151F2E;
   --font-color-main-text: #8BA0A4;
 }
 
@@ -21,6 +22,12 @@
     --foreground: lightgray;
     --card-background: #152232;
   }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -41,3 +48,7 @@ body {
   color: var(--font-color-main-text);
 }
 
+.bg-banner {
+  background-color: var(--font-color-banner);
+  margin-bottom: 20px;
+}

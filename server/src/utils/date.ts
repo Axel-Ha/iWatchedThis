@@ -19,7 +19,6 @@ export function getNextAnimeSeason() {
     const month = now.getMonth() + 1;
     const year = now.getFullYear();
 
-    console.log(month);
     if (month >= 1 && month <= 3) {
         return { season: 'SPRING', seasonYear: year };
     } else if (month >= 4 && month <= 6) {
