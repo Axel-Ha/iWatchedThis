@@ -1,7 +1,7 @@
 'use client'
 import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
 import { AnimesResponse } from "@/lib/definitions/anime";
-import { getCurrentSeasonAnimes, getPopularAnimes, getTrendingAnimes, getUpcomingAnimes, getTopAnimes } from "@/services/animesService";
+import { getAnimeById, getCurrentSeasonAnimes, getPopularAnimes, getTrendingAnimes, getUpcomingAnimes, getTopAnimes } from "@/services/animesService";
 
 interface AnimesContextType {
   isLoading: boolean;
@@ -15,6 +15,7 @@ interface AnimesContextType {
   addAnime: (anime: AnimesResponse) => Promise<void>;
   removeAnime: (id: string) => Promise<void>;
   updateAnime: (anime: AnimesResponse) => Promise<void>;
+  getAnimeById: (id: string) => Promise<AnimesResponse>;
 }
 
 const AnimesContext = createContext<AnimesContextType | undefined>(undefined);
@@ -90,6 +91,20 @@ export function AnimesProvider({ children }: { children: ReactNode }) {
     }
   }, [/*fetchAnimes*/]);
 
+  const getAnimeByIdFromContext = useCallback(async (id: string) : Promise<AnimesResponse> =>{
+    setIsLoading(true);
+    setError(null);
+    try {
+      const anime = await getAnimeById(id);
+      return anime;
+    } catch (err) {
+      setError("Erreur lors du chargement de l'anime.");
+      return {} as AnimesResponse;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
     fetchAnimes();
   }, [fetchAnimes]);
@@ -108,6 +123,7 @@ export function AnimesProvider({ children }: { children: ReactNode }) {
         addAnime,
         removeAnime,
         updateAnime,
+        getAnimeById: getAnimeByIdFromContext,
       }}>
       {children}
     </AnimesContext.Provider>

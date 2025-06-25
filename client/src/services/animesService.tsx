@@ -58,3 +58,22 @@ export async function getTopAnimes() : Promise<AnimesResponse[]> {
         return [];
     }
 }
+
+export async function getAnimeById(id: string): Promise<AnimesResponse> {
+    try {
+      const response = await fetch(`${BASE_URL}/${id}`);
+    //   const response = await fetch(`${BASE_URL}/test`);
+  
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Error ${response.status}: ${text}`);
+      }
+  
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Failed to load anime by id', error);
+      return {} as AnimesResponse;
+    }
+  }
+  

@@ -4,7 +4,7 @@ import { getCurrentAnimeSeason } from '../utils/date';
 const ANILIST_URL = 'https://graphql.anilist.co';
 
 export async function fetchTrendingAnime(perPage = 5) {
-    const query = `
+  const query = `
     query {
       Page(perPage: ${perPage}) {
         media(sort: TRENDING_DESC, type: ANIME) {
@@ -16,11 +16,11 @@ export async function fetchTrendingAnime(perPage = 5) {
       }
     }
   `;
-    return fetchFromAnilist(query);
+  return fetchFromAnilist(query);
 }
 
 export async function fetchPopularAnime(perPage = 5) {
-    const query = `
+  const query = `
     query {
       Page(perPage: ${perPage}) {
         media(sort: POPULARITY_DESC, type: ANIME) {
@@ -32,12 +32,12 @@ export async function fetchPopularAnime(perPage = 5) {
       }
     }
   `;
-    return fetchFromAnilist(query);
+  return fetchFromAnilist(query);
 }
 
 export async function fetchNextSeasonAnime(perPage = 5) {
-    const { season, seasonYear } = getCurrentAnimeSeason();
-    const query = `
+  const { season, seasonYear } = getCurrentAnimeSeason();
+  const query = `
     query {
       Page(perPage: ${perPage}) {
         media(sort: POPULARITY_DESC, type: ANIME, season: ${season}, seasonYear: ${seasonYear}) {
@@ -49,11 +49,11 @@ export async function fetchNextSeasonAnime(perPage = 5) {
       }
     }
   `;
-    return fetchFromAnilist(query);
+  return fetchFromAnilist(query);
 }
 
 export async function fetchTopAnime(perPage = 10) {
-    const query = `
+  const query = `
     query {
         Page(perPage: ${perPage}) {
             media(sort: SCORE_DESC, type: ANIME) {
@@ -79,12 +79,12 @@ export async function fetchTopAnime(perPage = 10) {
         }
     }
   `;
-    return fetchFromAnilist(query);
+  return fetchFromAnilist(query);
 }
 
 export async function fetchCurrentSeasonAnime(perPage = 5) {
-    const { season, seasonYear } = getCurrentAnimeSeason();
-    const query = `
+  const { season, seasonYear } = getCurrentAnimeSeason();
+  const query = `
     query {
       Page(perPage: ${perPage}) {
         media(sort: POPULARITY_DESC, type: ANIME, season: ${season}, seasonYear: ${seasonYear}) {
@@ -96,18 +96,63 @@ export async function fetchCurrentSeasonAnime(perPage = 5) {
       }
     }
   `;
-    return fetchFromAnilist(query);
+  return fetchFromAnilist(query);
+}
+
+export async function fetchAnimeById(id: number) {
+  const query = `
+  query {
+    Media(id: ${id}) {
+        id
+        title {
+            romaji
+        }
+        coverImage { large }
+        genres
+        studios(isMain: true) {
+            nodes {
+            name
+            }
+        }
+            averageScore
+            popularity
+            seasonYear
+            season
+            status
+            format
+            episodes
+            duration
+    }
+  }
+  `;
+  return fetchFromAnilistItem(query);
+}
+
+async function fetchFromAnilistItem(query: string) {
+  const response = await fetch(ANILIST_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({ query }),
+  });
+
+  const data = (await response.json()) as { data: { Media: any } };
+
+  return data.data.Media;
 }
 
 async function fetchFromAnilist(query: string) {
-    const response = await fetch(ANILIST_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-        },
-        body: JSON.stringify({ query }),
-    });
-    const data = (await response.json()) as { data: { Page: { media: any[] } } };
-    return data.data.Page.media;
-} 
+  const response = await fetch(ANILIST_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({ query }),
+  });
+
+  const data = (await response.json()) as { data: { Page: { media: any[] } } };
+  return data.data.Page.media;
+}

@@ -15,7 +15,7 @@ const AnimeCard = ({ animes, topAnimes }: AnimeCardProps) => {
                 const { title, coverImage, genres, studios, averageScore, popularity, seasonYear, season, status, format, episodes, duration } = anime;
                 if (!topAnimes) {
                     return (
-                        <Link href={`/Anime/${anime.id}`} key={title.romaji} className="flex flex-col w-52 justify-between items-center mb-5">
+                        <Link href={`/anime/${anime.id}`} key={title.romaji} className="flex flex-col w-52 justify-between items-center mb-5">
                             <img src={coverImage.large} alt={`Cover of ${title.romaji}`} className="rounded-lg object-cover w-52 h-72" />
                             <div className="main-text font-bold w-52 flex justify-center">
                                 <p className="mt-3 w-full h-12 text-sm truncate" title={title.romaji} >
@@ -26,7 +26,7 @@ const AnimeCard = ({ animes, topAnimes }: AnimeCardProps) => {
                     );
                 } else {
                     return (
-                        <div key={title.romaji} className="flex items-center w-full bg-banner rounded-lg px-4 py-2">
+                        <Link href={`/anime/${anime.id}`} key={title.romaji} className="flex items-center w-full bg-banner rounded-lg px-4 py-2">
                             <img src={coverImage.large} alt={`Cover of ${title.romaji}`} className="rounded-lg w-18 h-24 object-cover" />
                             <div className="flex flex-row items-center justify-between w-full ml-4 gap-6">
                                 <div className="flex flex-col min-w-[180px]">
@@ -60,7 +60,7 @@ const AnimeCard = ({ animes, topAnimes }: AnimeCardProps) => {
                                     ))}
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     );
                 }
             })}
