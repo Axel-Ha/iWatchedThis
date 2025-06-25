@@ -2,6 +2,7 @@
 
 import { AnimesResponse } from "@/lib/definitions/anime";
 import { convertTime } from "@/hooks/date";
+import Link from "next/link";
 
 type AnimeCardProps = {
     animes: AnimesResponse[];
@@ -14,14 +15,14 @@ const AnimeCard = ({ animes, topAnimes }: AnimeCardProps) => {
                 const { title, coverImage, genres, studios, averageScore, popularity, seasonYear, season, status, format, episodes, duration } = anime;
                 if (!topAnimes) {
                     return (
-                        <div key={title.romaji} className="flex flex-col w-52 justify-between items-center mb-5">
+                        <Link href={`/Anime/${anime.id}`} key={title.romaji} className="flex flex-col w-52 justify-between items-center mb-5">
                             <img src={coverImage.large} alt={`Cover of ${title.romaji}`} className="rounded-lg object-cover w-52 h-72" />
                             <div className="main-text font-bold w-52 flex justify-center">
                                 <p className="mt-3 w-full h-12 text-sm truncate" title={title.romaji} >
                                     {title.romaji}
                                 </p>
                             </div>
-                        </div>
+                        </Link >
                     );
                 } else {
                     return (
