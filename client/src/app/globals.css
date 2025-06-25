@@ -7,6 +7,8 @@
   --font-color-title-home-page: #ECF6FE;
   --font-color-banner: #151F2E;
   --font-color-main-text: #8BA0A4;
+  --text-soft-blue: #ADC0D2;
+  --text-secondary-blue: #637586;
 }
 
 @theme inline {
@@ -25,8 +27,6 @@
 }
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -48,7 +48,15 @@ body {
   color: var(--font-color-main-text);
 }
 
+.main-color {
+  color: var(--text-soft-blue);
+}
+
 .bg-banner {
   background-color: var(--font-color-banner);
   margin-bottom: 20px;
+}
+
+.text-secondary-color {
+  color: var(--text-secondary-blue);
 }

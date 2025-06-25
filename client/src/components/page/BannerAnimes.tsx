@@ -12,9 +12,9 @@ type BannerAnimesProps = {
 const BannerAnimes = ({ animes, titleSection, topAnime }: BannerAnimesProps) => {
   return (
     <>
-      <div className="flex items-center justify-between w-full">
-        <p className="main-text text-2xl font-bold home-page-title mt-10">{titleSection}</p>
-        <button className="main-text text-sm font-bold home-page-title mt-10"> View All </button>
+      <div className="flex items-center justify-between w-full mb-3">
+        <p className=" text-2xl font-bold main-color">{titleSection}</p>
+        <button className=" text-sm font-bold main-color "> View All </button>
       </div>
       {!topAnime ? (
       <div className="flex flex-row items-center justify-center gap-5">
@@ -22,7 +22,7 @@ const BannerAnimes = ({ animes, titleSection, topAnime }: BannerAnimesProps) => 
       </div>
       ) : (
         <div>
-            <AnimeCard  animes={animes} topAnimes={true} />
+            <AnimeCard animes={animes} topAnimes={true} />
         </div>
       )}
     </>

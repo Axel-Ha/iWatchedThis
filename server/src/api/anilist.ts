@@ -73,6 +73,8 @@ export async function fetchTopAnime(perPage = 10) {
             season
             status
             format
+            episodes
+            duration
             }
         }
     }
