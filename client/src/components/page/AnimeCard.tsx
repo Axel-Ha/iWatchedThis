@@ -17,7 +17,7 @@ const AnimeCard = ({ animes, topAnimes }: AnimeCardProps) => {
                     return (
                         <Link href={`/anime/${anime.id}`} key={title.romaji} className="flex flex-col w-52 justify-between items-center mb-5">
                             <img src={coverImage.large} alt={`Cover of ${title.romaji}`} className="rounded-lg object-cover w-52 h-72" />
-                            <div className="main-text font-bold w-52 flex justify-center">
+                            <div className="text-main font-bold w-52 flex justify-center">
                                 <p className="mt-3 w-full h-12 text-sm truncate" title={title.romaji} >
                                     {title.romaji}
                                 </p>
@@ -39,24 +39,24 @@ const AnimeCard = ({ animes, topAnimes }: AnimeCardProps) => {
                                     </div>
                                 </div>
                                 <div className="flex flex-col items-center min-w-[80px]">
-                                    <span className=" text-lg font-bold main-color">{averageScore}%</span>
-                                    <span className="text-xs text-secondary-color ">{popularity} users</span>
+                                    <span className=" text-lg font-bold text-soft-blue">{averageScore}%</span>
+                                    <span className="text-xs text-secondary ">{popularity} users</span>
                                 </div>
                                 <div className="flex flex-col items-center min-w-[80px]">
-                                    <span className="text-sm main-color">{format}</span>
+                                    <span className="text-sm text-soft-blue">{format}</span>
                                     {format === 'MOVIE' ? (
-                                        <span className="text-xs text-secondary-color">{convertTime(duration)}</span>
+                                        <span className="text-xs text-secondary">{convertTime(duration)}</span>
                                     ) : (
-                                        <span className="text-xs text-secondary-color">{episodes} episode{episodes > 1 ? 's' : ''}</span>
+                                        <span className="text-xs text-secondary">{episodes} episode{episodes > 1 ? 's' : ''}</span>
                                     )}
                                 </div>
                                 <div className="flex flex-col items-center min-w-[80px]">
-                                    <span className="text-sm main-color">{season} {seasonYear}</span>
-                                    <span className="text-xs text-secondary-color">{status}</span>
+                                    <span className="text-sm text-soft-blue">{season} {seasonYear}</span>
+                                    <span className="text-xs text-secondary">{status}</span>
                                 </div>
                                 <div className="flex flex-col items-center min-w-[80px]">
                                     {studios.nodes.map((studio: { name: string }) => (
-                                        <span key={studio.name} className="text-sm main-color">{studio.name}</span>
+                                        <span key={studio.name} className="text-sm text-soft-blue">{studio.name}</span>
                                     ))}
                                 </div>
                             </div>

@@ -62,7 +62,6 @@ export async function getTopAnimes() : Promise<AnimesResponse[]> {
 export async function getAnimeById(id: string): Promise<AnimesResponse> {
     try {
       const response = await fetch(`${BASE_URL}/${id}`);
-    //   const response = await fetch(`${BASE_URL}/test`);
   
       if (!response.ok) {
         const text = await response.text();

@@ -9,6 +9,7 @@
   --font-color-main-text: #8BA0A4;
   --text-soft-blue: #ADC0D2;
   --text-secondary-blue: #637586;
+  --text-subtle-blue: #728AA1;
 }
 
 @theme inline {
@@ -48,6 +49,10 @@ body {
   color: var(--font-color-main-text);
 }
 
+.main-text-color{
+  color: var(--foreground)
+}
+
 .main-color {
   color: var(--text-soft-blue);
 }
@@ -59,4 +64,40 @@ body {
 
 .text-secondary-color {
   color: var(--text-secondary-blue);
+}
+.text-subtle-color{
+  color: var(--text-subtle-blue)
+}
+.img-banner-card {
+  width: 215px;
+  height: 305px;
+  object-fit: cover;
+}
+
+.text-home-title {
+  color: var(--font-color-title-home-page);
+}
+
+.text-home {
+  color: var(--font-color-text-home-page);
+}
+
+.text-banner {
+  color: var(--font-color-banner);
+}
+
+.text-main {
+  color: var(--font-color-main-text);
+}
+
+.text-soft-blue {
+  color: var(--text-soft-blue);
+}
+
+.text-secondary {
+  color: var(--text-secondary-blue);
+}
+
+.text-subtle {
+  color: var(--text-subtle-blue);
 }

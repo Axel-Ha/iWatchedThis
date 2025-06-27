@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import { getCurrentAnimeSeason } from '../utils/date';
+import * as queryUtils from '../utils/query';
 
 const ANILIST_URL = 'https://graphql.anilist.co';
 
@@ -8,10 +9,7 @@ export async function fetchTrendingAnime(perPage = 5) {
     query {
       Page(perPage: ${perPage}) {
         media(sort: TRENDING_DESC, type: ANIME) {
-          id
-          title { romaji }
-          coverImage { large }
-          episodes
+          ${queryUtils.queryHomePageAnimes}
         }
       }
     }
@@ -24,10 +22,7 @@ export async function fetchPopularAnime(perPage = 5) {
     query {
       Page(perPage: ${perPage}) {
         media(sort: POPULARITY_DESC, type: ANIME) {
-          id
-          title { romaji }
-          coverImage { large }
-          episodes
+          ${queryUtils.queryHomePageAnimes}
         }
       }
     }
@@ -41,10 +36,7 @@ export async function fetchNextSeasonAnime(perPage = 5) {
     query {
       Page(perPage: ${perPage}) {
         media(sort: POPULARITY_DESC, type: ANIME, season: ${season}, seasonYear: ${seasonYear}) {
-          id
-          title { romaji }
-          coverImage { large }
-          episodes
+          ${queryUtils.queryHomePageAnimes}
         }
       }
     }
@@ -57,24 +49,7 @@ export async function fetchTopAnime(perPage = 10) {
     query {
         Page(perPage: ${perPage}) {
             media(sort: SCORE_DESC, type: ANIME) {
-            title {
-                romaji
-            }
-            coverImage { large }
-            genres
-            studios(isMain: true) {
-                nodes {
-                name
-                }
-            }
-            averageScore
-            popularity
-            seasonYear
-            season
-            status
-            format
-            episodes
-            duration
+              ${queryUtils.queryInfoAnimes}
             }
         }
     }
@@ -103,25 +78,8 @@ export async function fetchAnimeById(id: number) {
   const query = `
   query {
     Media(id: ${id}) {
-        id
-        title {
-            romaji
-        }
-        coverImage { large }
-        genres
-        studios(isMain: true) {
-            nodes {
-            name
-            }
-        }
-            averageScore
-            popularity
-            seasonYear
-            season
-            status
-            format
-            episodes
-            duration
+      ${queryUtils.queryInfoAnimes}
+      ${queryUtils.queryRelationAnimes}
     }
   }
   `;
@@ -138,7 +96,12 @@ async function fetchFromAnilistItem(query: string) {
     body: JSON.stringify({ query }),
   });
 
-  const data = (await response.json()) as { data: { Media: any } };
+  const data = (await response.json()) as { data?: { Media?: any }, errors?: any };
+
+  if (!data.data || !data.data.Media) {
+    console.error('AniList API response:', JSON.stringify(data, null, 2));
+    throw new Error('No Media found in AniList response');
+  }
 
   return data.data.Media;
 }

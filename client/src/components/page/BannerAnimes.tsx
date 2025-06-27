@@ -13,8 +13,8 @@ const BannerAnimes = ({ animes, titleSection, topAnime }: BannerAnimesProps) => 
   return (
     <>
       <div className="flex items-center justify-between w-full mb-3">
-        <p className=" text-2xl font-bold main-color">{titleSection}</p>
-        <button className=" text-sm font-bold main-color "> View All </button>
+        <p className=" text-2xl font-bold text-soft-blue">{titleSection}</p>
+        <button className=" text-sm font-bold text-soft-blue "> View All </button>
       </div>
       {!topAnime ? (
       <div className="flex flex-row items-center justify-center gap-5">
