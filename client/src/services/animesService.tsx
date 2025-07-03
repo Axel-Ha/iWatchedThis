@@ -1,6 +1,6 @@
 'use server'
 
-import { AnimesResponse } from "@/lib/definitions/anime";
+import { AnimesResponse, AnimeResponse } from '../../../shared/definitions/anime';
 
 const BASE_URL = 'http://localhost:5000/api/animes'
 
@@ -59,7 +59,7 @@ export async function getTopAnimes() : Promise<AnimesResponse[]> {
     }
 }
 
-export async function getAnimeById(id: string): Promise<AnimesResponse> {
+export async function getAnimeById(id: string): Promise<AnimeResponse> {
     try {
       const response = await fetch(`${BASE_URL}/${id}`);
   
@@ -72,7 +72,7 @@ export async function getAnimeById(id: string): Promise<AnimesResponse> {
       return data;
     } catch (error) {
       console.error('Failed to load anime by id', error);
-      return {} as AnimesResponse;
+      return {} as AnimeResponse;
     }
   }
   

@@ -3,6 +3,7 @@
 import React from "react";
 import BannerAnimes from "@/components/page/BannerAnimes";
 import { useAnimes } from "@/components/contexts/AnimesContext";
+import TopLeaderBordInfo from "@/components/page/TopLeaderBordInfo";
 
 export default function Home() {
 
@@ -60,10 +61,10 @@ export default function Home() {
         </div>
         
         <BannerAnimes animes={trendingAnimes} titleSection="Trending Animes" />
-        <BannerAnimes animes={currentSeasonAnimes} titleSection="Current Season Animes" />
-        <BannerAnimes animes={upcomingAnimes} titleSection="Upcoming Animes" />
+        <BannerAnimes animes={currentSeasonAnimes} titleSection="Popular this Animes" />
+        <BannerAnimes animes={upcomingAnimes} titleSection="Upcoming Next Season" />
         <BannerAnimes animes={popularAnimes} titleSection="All time popular animes" />
-        <BannerAnimes animes={topAnimes} titleSection="Top 100 Animes" topAnime={true} />
+        <TopLeaderBordInfo animes={topAnimes} titleSection="Top 100 Animes" />
       </main>
     </div>
   );

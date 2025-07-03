@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { getCurrentAnimeSeason } from '../utils/date';
+import { getCurrentAnimeSeason,getNextAnimeSeason } from '../utils/date';
 import * as queryUtils from '../utils/query';
 
 const ANILIST_URL = 'https://graphql.anilist.co';
@@ -31,7 +31,7 @@ export async function fetchPopularAnime(perPage = 5) {
 }
 
 export async function fetchNextSeasonAnime(perPage = 5) {
-  const { season, seasonYear } = getCurrentAnimeSeason();
+  const { season, seasonYear } = getNextAnimeSeason();
   const query = `
     query {
       Page(perPage: ${perPage}) {
@@ -80,6 +80,7 @@ export async function fetchAnimeById(id: number) {
     Media(id: ${id}) {
       ${queryUtils.queryInfoAnimes}
       ${queryUtils.queryRelationAnimes}
+      ${queryUtils.querySideBarAnimeInfos}
     }
   }
   `;

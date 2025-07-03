@@ -5,6 +5,7 @@ export const queryHomePageAnimes = `
     episodes
 `;
 export const queryInfoAnimes = `
+  id
   title { romaji }
   coverImage { large }
   genres
@@ -25,6 +26,13 @@ export const queryInfoAnimes = `
   description
 `;
 
+export const queryHeaderAnimeInfo = `
+  title { romaji, native, english }
+  coverImage { large }
+  bannerImage
+  description
+`
+
 export const queryRelationAnimes = `
   relations {
     edges {
@@ -35,4 +43,29 @@ export const queryRelationAnimes = `
       }
     }
   }
+`;
+
+export const querySideBarAnimeInfos = `
+  startDate { year, month, day }
+  endDate { year, month, day }
+  episodes
+  duration
+  format
+  status
+  season
+  seasonYear
+  genres
+  source
+  status
+  type
+  averageScore
+  meanScore
+  popularity
+  favourites 
+  studios(isMain: true) {
+    nodes {
+      name
+    }
+  }
+  synonyms
 `;

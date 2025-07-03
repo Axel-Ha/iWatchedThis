@@ -1,11 +1,8 @@
 import express from 'express';
 import { fetchTrendingAnime, fetchPopularAnime, fetchNextSeasonAnime, fetchCurrentSeasonAnime, fetchTopAnime, fetchAnimeById } from '../api/anilist'; // Adjust path if necessary
+import { mapAniListToAnimeResponse } from '../mappers/animeMapper';
 const router = express.Router();
 
-// Route de test doit être tout en haut
-router.get('/test', (req, res) => {
-  res.send('✅ Route /api/animes/test fonctionne');
-});
 
 router.get('/trending', async (_req, res) => {
   try {
@@ -73,7 +70,9 @@ router.get('/:id', async (req, res) => {
       return res.status(404).json({ error: `Anime with ID ${id} not found.` });
     }
 
-    res.json(anime);
+    const response = mapAniListToAnimeResponse(anime);
+
+    res.json(response);
   } catch (error) {
     console.error('Error fetching AniList data for ID:', req.params.id, error);
     res.status(500).json({ error: 'Failed to retrieve anime details due to a server error.' });
