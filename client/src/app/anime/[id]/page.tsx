@@ -6,11 +6,12 @@ import { getAnimeById } from "@/services/animesService";
 export default async function Anime({ params }: { params: Promise<{ id: string }> }) {
     const resolvedParams = await params;
     const anime = await getAnimeById(resolvedParams.id);
-
+    const {animeHeader } = anime
+    const { title, bannerImage } = animeHeader
     return (
         <>
             <div>
-                <img src={anime.bannerImage} alt={`Cover of ${anime.title.romaji}`} className="" />
+                <img src={bannerImage} className="" />
             </div>
             <div className="pl-50">
                 <BannerCardInformations anime={anime} />

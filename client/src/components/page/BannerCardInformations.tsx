@@ -1,13 +1,14 @@
 'use client'
 
-import { AnimesResponse } from "@/lib/definitions/anime"
+import { AnimeResponse } from '../../../../shared/definitions/anime';
 
 
 type BannerCardInformationsProps = {
-    anime: AnimesResponse
+    anime: AnimeResponse
 }
 export default function BannerCardInformations({ anime }: BannerCardInformationsProps) {
-    const { title, coverImage, description } = anime;
+    const {animeHeader } = anime
+    const { title, coverImage, description } = animeHeader
 
     return (
         <div className="bg-banner">
