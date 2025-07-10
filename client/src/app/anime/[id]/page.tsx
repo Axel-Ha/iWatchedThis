@@ -1,12 +1,13 @@
-import BannerCardInformations from "@/components/page/BannerCardInformations";
-import SideBarCardInformationsProps from "@/components/page/SideBarCardInformations";
+import BannerCardInformations from "@/components/page/informationsPage/BannerCardInformations";
+import Relations from "@/components/page/informationsPage/Relations";
+import SideBarCardInformationsProps from "@/components/page/informationsPage/SideBarCardInformations";
 import { getAnimeById } from "@/services/animesService";
 
 
 export default async function Anime({ params }: { params: Promise<{ id: string }> }) {
     const resolvedParams = await params;
     const anime = await getAnimeById(resolvedParams.id);
-    const {animeHeader } = anime
+    const {animeHeader, relations } = anime
     const { title, bannerImage } = animeHeader
     return (
         <>
@@ -15,6 +16,7 @@ export default async function Anime({ params }: { params: Promise<{ id: string }
             </div>
             <div className="pl-50">
                 <BannerCardInformations anime={anime} />
+                <Relations relations={relations} />
                 <SideBarCardInformationsProps anime={anime} />
             </div>
         </>

@@ -1,8 +1,8 @@
 'use client'
 
-import { AnimesResponse } from "../../../../shared/definitions/anime"
-import AnimeCard from "./AnimeCard";
-import TopLeaderBordInfo from "./TopLeaderBordInfo";
+import { AnimesResponse } from "../../../../../shared/definitions/anime"
+import AnimeCard from "../AnimeCard";
+import TopLeaderBordInfo from "../TopLeaderBordInfo";
 
 type BannerAnimesProps = {
   animes: AnimesResponse[];

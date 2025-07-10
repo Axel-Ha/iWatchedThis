@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimeResponse } from '../../../../shared/definitions/anime';
+import { AnimeResponse } from '../../../../../shared/definitions/anime';
 
 
 type BannerCardInformationsProps = {
@@ -27,6 +27,7 @@ export default function BannerCardInformations({ anime }: BannerCardInformations
                         <button>Reviews</button>
                         <button>Stats</button>
                         <button>Social</button>
+
                     </div>
                 </div>
             </div>

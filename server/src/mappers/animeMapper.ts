@@ -1,3 +1,4 @@
+import { format } from 'path';
 import { AnimeResponse } from '../../../shared/definitions/anime';
 
 export function mapAniListToAnimeResponse(anime: any): AnimeResponse {
@@ -7,6 +8,8 @@ export function mapAniListToAnimeResponse(anime: any): AnimeResponse {
       description: anime.description,
       bannerImage: anime.bannerImage,
       coverImage: anime.coverImage,
+      format: anime.format,
+      status: anime.status,
     },
     animeSideBar: {
       startDate: anime.startDate,
@@ -32,6 +35,9 @@ export function mapAniListToAnimeResponse(anime: any): AnimeResponse {
         relationType: edge.relationType,
         node: edge.node,
         coverImage: edge.node.coverImage,
+        format: edge.node.format,
+        status: edge.node.status,
+
       }))
       : [],
   };

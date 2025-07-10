@@ -22,7 +22,7 @@ export interface AnimesResponse {
 export interface AnimeRelations {
     relationType : string;
     node : { 
-        title : { romaji : string }
+        title : { romaji : string, english : string, native : string }
         format: string
     }
     coverImage : { medium : string }
@@ -38,6 +38,8 @@ export interface AnimeHeader {
     title: { romaji: string, english: string, native: string }
     description: string
     bannerImage: string
+    format: string
+    status: string
     coverImage: { large: string }
 }
 

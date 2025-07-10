@@ -1,12 +1,12 @@
 export const queryHomePageAnimes = `
     id
-    title { romaji }
+    title { romaji, native, english }
     coverImage { large }
     episodes
 `;
 export const queryInfoAnimes = `
   id
-  title { romaji }
+  title { romaji, native, english }
   coverImage { large }
   genres
   studios(isMain: true) {
@@ -38,8 +38,12 @@ export const queryRelationAnimes = `
     edges {
       relationType
       node {
-        title { romaji }
+        title { romaji, native, english }
         format
+        status
+        coverImage {
+          medium
+        }
       }
     }
   }
