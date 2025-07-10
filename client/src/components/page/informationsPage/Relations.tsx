@@ -17,15 +17,16 @@ const Relations = ({ relations }: RelationsProps) => {
     }));
 
     return (
-        <div className="flex flex-row">
-            {formattedRelations.map(({ type, titleEnglish, titleRomaji, mediaFormat, coverImage }, idx) => (
-                <div  key={idx}>
-                    <div className="flex flex-col">
+        <div className="flex flex-col">
+            <p className="text-soft-blue">Relations</p>
+            <div className="flex flex-row mt-5 mb-5">
+                {formattedRelations.map(({ type, titleEnglish, titleRomaji, mediaFormat, coverImage }, idx) => (
+                    <div className="flex flex-col mr-5" key={idx}>
                         <img src={coverImage} alt={titleRomaji} className="w-[85px] h-[115px] object-cover" />
-                        <span>{titleRomaji}</span>
+                        <span className="text-soft-blue">{titleRomaji}</span>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     )
 }
