@@ -6,7 +6,7 @@ type CharactersProps = {
     characters: charactersAndVoiceActors[]
 }
 
-export default function Characters({ characters }: CharactersProps) {
+const Characters = ({ characters }: CharactersProps) => {
     return (
         <div className="flex flex-col mt-10">
             <p className="text-soft-blue">Characters</p>
@@ -30,3 +30,5 @@ export default function Characters({ characters }: CharactersProps) {
         </div>
     )
 }
+
+export default Characters;

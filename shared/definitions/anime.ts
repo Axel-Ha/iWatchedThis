@@ -33,6 +33,7 @@ export interface AnimeResponse {
     animeSideBar: AnimeSideBarInfos;
     relations: AnimeRelations[];
     characters: charactersAndVoiceActors[];
+    staffs: staffs[];
 }
 
 export interface AnimeHeader {
@@ -67,6 +68,11 @@ export interface AnimeSideBarInfos {
         }
     }
     synonyms: string[]
+    tags: {
+        name: string;
+        isMediaSpoiler: boolean;
+        rank: number;
+    }[];
 }
 
 export interface charactersAndVoiceActors {
@@ -79,4 +85,12 @@ export interface charactersAndVoiceActors {
         name: { full: string };
         image: { medium: string };
     }>;
+}
+
+export interface staffs {
+    role: string;
+    staff: {
+        name: { full: string };
+        image: { medium: string };
+    };
 }

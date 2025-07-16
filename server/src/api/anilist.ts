@@ -74,7 +74,7 @@ export async function fetchCurrentSeasonAnime(perPage = 5) {
   return fetchFromAnilist(query);
 }
 
-export async function fetchAnimeById(id: number, perPage = 6) {
+export async function fetchAnimeById(id: number, perPage = 6, perStaffPage = 3) {
   const query = `
   query {
     Media(id: ${id}) {
@@ -83,6 +83,9 @@ export async function fetchAnimeById(id: number, perPage = 6) {
       ${queryUtils.querySideBarAnimeInfos}
       characters(sort: [ROLE, FAVOURITES_DESC, RELEVANCE], perPage: ${perPage}) {
         ${queryUtils.queryCharactersAndVoiceActors}
+      }
+      staff(sort: [RELEVANCE], perPage: ${perStaffPage}) {
+        ${queryUtils.queryStaffs}
       }
     }
   }

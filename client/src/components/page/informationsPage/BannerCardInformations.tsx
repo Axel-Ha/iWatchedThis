@@ -6,7 +6,7 @@ import { AnimeResponse } from '../../../../../shared/definitions/anime';
 type BannerCardInformationsProps = {
     anime: AnimeResponse
 }
-export default function BannerCardInformations({ anime }: BannerCardInformationsProps) {
+const BannerCardInformations = ({ anime }: BannerCardInformationsProps) => {
     const {animeHeader } = anime
     const { title, coverImage, description } = animeHeader
 
@@ -33,5 +33,6 @@ export default function BannerCardInformations({ anime }: BannerCardInformations
             </div>
         </div>
     )
-
 }
+
+export default BannerCardInformations;

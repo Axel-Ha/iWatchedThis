@@ -72,6 +72,11 @@ export const querySideBarAnimeInfos = `
     }
   }
   synonyms
+  tags {
+    name
+    isMediaSpoiler
+    rank
+  }
 `;
 
 
@@ -89,4 +94,14 @@ export const queryCharactersAndVoiceActors = `
         }
       }
     }
+`;
+
+export const queryStaffs = `
+  edges {
+    role
+    node {
+      name { full }
+      image { medium }
+    }
+  }
 `;

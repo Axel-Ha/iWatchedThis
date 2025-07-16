@@ -29,6 +29,11 @@ export function mapAniListToAnimeResponse(anime: any): AnimeResponse {
       format: anime.format,
       studios: anime.studios,
       synonyms: anime.synonyms,
+      tags: anime.tags.map((tag: any) => ({
+        name: tag.name,
+        isMediaSpoiler: tag.isMediaSpoiler,
+        rank: tag.rank,
+      })),
     },
     relations: Array.isArray(anime.relations?.edges)
       ? anime.relations.edges.map((edge: any) => ({
@@ -49,6 +54,12 @@ export function mapAniListToAnimeResponse(anime: any): AnimeResponse {
               .map((role: any) => role.voiceActor)
               .filter((va: any) => !!va)
           : [],
+      }))
+      : [],
+    staffs: Array.isArray(anime.staff?.edges)
+      ? anime.staff.edges.map((edge: any) => ({
+        role: edge.role,
+        staff: edge.node,
       }))
       : [],
   };

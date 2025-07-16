@@ -11,7 +11,7 @@ type SideBarCardInformationsProps = {
 export default function SideBarCardInformationsProps({ anime }: SideBarCardInformationsProps) {
     const { animeHeader, animeSideBar } = anime
     const { title } = animeHeader;
-    const { startDate, status, studios, source, genres, averageScore, popularity, favourites, episodes, seasonYear, season, duration, format, synonyms } = animeSideBar
+    const { startDate, status, studios, source, genres, averageScore, popularity, favourites, episodes, seasonYear, season, duration, format, synonyms, tags } = animeSideBar
 
     const animeStatus = status !== 'NOT_YET_RELEASED';
     const durationStatus = duration !== null
@@ -32,7 +32,7 @@ export default function SideBarCardInformationsProps({ anime }: SideBarCardInfor
                 <li>Popularity : {popularity}</li>
                 <li>Favorites : {favourites}</li>
                 <li>Studios : {studios.nodes.map((studio: { name: string }) => (
-                    <span key={studio.name} className="text-sm text-soft-blue">{studio.name}</span>
+                    <span key={studio.name} className="">{studio.name}</span>
                 ))}</li>
                 {/* <li>Producers : {studios.nodes.map((studio: { name: string }) => (
                     <span key={studio.name} className="text-sm text-soft-blue">{studio.name}</span>
@@ -43,10 +43,15 @@ export default function SideBarCardInformationsProps({ anime }: SideBarCardInfor
                 <li>English : {title.english} </li>
                 <li>Native : {title.native} </li>
                 <li>Synonyms : {synonyms.map((synonym: string) => (
-                    <span key={synonym} className="text-sm text-soft-blue ">{synonym}</span>
-
+                    <span key={synonym} className=" ">{synonym}</span>
                 ))}</li>
             </ul>
+            <p className="text-soft-blue mt-5">Tags</p>
+            <div className="flex flex-col">
+                {tags.map((tag: { name: string, isMediaSpoiler: boolean, rank: number }) => (
+                    <span key={tag.name} className={`${tag.isMediaSpoiler ? 'text-soft-blue font-bold'  : ''}`}>{tag.name} {tag.isMediaSpoiler && 'Spoiler'} {tag.rank}</span>
+                ))}
+            </div>
         </div>
     );
 }
