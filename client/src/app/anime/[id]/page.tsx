@@ -1,4 +1,5 @@
 import BannerCardInformations from "@/components/page/informationsPage/BannerCardInformations";
+import Characters from "@/components/page/informationsPage/Characters";
 import Relations from "@/components/page/informationsPage/Relations";
 import SideBarCardInformationsProps from "@/components/page/informationsPage/SideBarCardInformations";
 import { getAnimeById } from "@/services/animesService";
@@ -7,8 +8,8 @@ import { getAnimeById } from "@/services/animesService";
 export default async function Anime({ params }: { params: Promise<{ id: string }> }) {
     const resolvedParams = await params;
     const anime = await getAnimeById(resolvedParams.id);
-    const {animeHeader, relations } = anime
-    const { title, bannerImage } = animeHeader
+    const {animeHeader, relations, characters } = anime
+    const { bannerImage } = animeHeader
     return (
         <>
             <div>
@@ -18,6 +19,7 @@ export default async function Anime({ params }: { params: Promise<{ id: string }
                 <BannerCardInformations anime={anime} />
                 <Relations relations={relations} />
                 <SideBarCardInformationsProps anime={anime} />
+                <Characters characters={characters} />
             </div>
         </>
     )

@@ -40,5 +40,16 @@ export function mapAniListToAnimeResponse(anime: any): AnimeResponse {
 
       }))
       : [],
+    characters: Array.isArray(anime.characters?.edges)
+      ? anime.characters.edges.map((edge: any) => ({
+        role: edge.role,
+        character: edge.node,
+        voiceActors: Array.isArray(edge.voiceActorRoles)
+          ? edge.voiceActorRoles
+              .map((role: any) => role.voiceActor)
+              .filter((va: any) => !!va)
+          : [],
+      }))
+      : [],
   };
 } 

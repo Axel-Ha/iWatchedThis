@@ -74,5 +74,5 @@ export async function getAnimeById(id: string): Promise<AnimeResponse> {
       console.error('Failed to load anime by id', error);
       return {} as AnimeResponse;
     }
-  }
+}
   

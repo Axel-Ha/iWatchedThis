@@ -5,7 +5,7 @@ export interface AnimesResponse {
     genres: string[]
     studios: {
         nodes: {
-            [x: string]: any; 
+            [x: string]: any;
             name: string
         }
     }
@@ -20,18 +20,19 @@ export interface AnimesResponse {
 }
 
 export interface AnimeRelations {
-    relationType : string;
-    node : { 
-        title : { romaji : string, english : string, native : string }
+    relationType: string;
+    node: {
+        title: { romaji: string, english: string, native: string }
         format: string
     }
-    coverImage : { medium : string }
+    coverImage: { medium: string }
 }
 
-export interface AnimeResponse { 
+export interface AnimeResponse {
     animeHeader: AnimeHeader;
     animeSideBar: AnimeSideBarInfos;
     relations: AnimeRelations[];
+    characters: charactersAndVoiceActors[];
 }
 
 export interface AnimeHeader {
@@ -61,9 +62,21 @@ export interface AnimeSideBarInfos {
     format: string
     studios: {
         nodes: {
-            [x: string]: any; 
+            [x: string]: any;
             name: string
         }
     }
     synonyms: string[]
+}
+
+export interface charactersAndVoiceActors {
+    role: string;
+    character: {
+        name: { full: string };
+        image: { medium: string };
+    };
+    voiceActors: Array<{
+        name: { full: string };
+        image: { medium: string };
+    }>;
 }

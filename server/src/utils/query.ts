@@ -73,3 +73,20 @@ export const querySideBarAnimeInfos = `
   }
   synonyms
 `;
+
+
+export const queryCharactersAndVoiceActors = `
+    edges {
+      role
+      node {
+        name { full }
+        image { medium }
+      }
+      voiceActorRoles(language: JAPANESE) {
+        voiceActor {
+          name { full }
+          image { medium }
+        }
+      }
+    }
+`;
