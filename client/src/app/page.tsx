@@ -1,7 +1,7 @@
 'use client'
 
 import React from "react";
-import BannerAnimes from "@/components/page/informationsPage/BannerAnimes";
+import BannerAnimes from "@/app/anime/components/BannerAnimes";
 import { useAnimes } from "@/components/contexts/AnimesContext";
 import TopLeaderBordInfo from "@/components/page/TopLeaderBordInfo";
 

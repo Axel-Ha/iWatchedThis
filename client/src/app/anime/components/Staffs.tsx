@@ -1,15 +1,19 @@
 'use client'
 
+import Link from "next/link";
 import { staffs } from "../../../../../shared/definitions/anime";
+import { useRouter } from "next/navigation";
 
 type StaffsProps = {
     staffs: staffs[]
+    animeId: string
 }
 
-const Staffs = ({ staffs }: StaffsProps) => {
+const Staffs = ({ staffs, animeId }: StaffsProps) => {
+    const router = useRouter()
     return (
         <div className="flex flex-col mt-10">
-            <p className="text-soft-blue">Staffs</p>
+            <p onClick={() => router.push(`/anime/${animeId}/staffs`)} className="text-soft-blue">Staffs</p>
             <div className="flex flex-row">
                 {staffs.map((staff, idx) => (
                     <div key={idx} className="flex flex-col mr-5">
