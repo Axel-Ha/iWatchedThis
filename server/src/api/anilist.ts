@@ -93,6 +93,19 @@ export async function fetchAnimeById(id: number, perPage = 6, perStaffPage = 3) 
   return fetchFromAnilistItem(query);
 }
 
+export async function fetchStaffsByMediaId(mediaId: number, page = 1) {
+  const query = `
+    query {
+      Media(id: ${mediaId}) {
+        staff(sort: [RELEVANCE], page: ${page}) {
+          ${queryUtils.queryStaffs}
+        }
+      }
+    }
+  `;
+  return fetchFromAnilistItem(query);
+}
+
 async function fetchFromAnilistItem(query: string) {
   const response = await fetch(ANILIST_URL, {
     method: 'POST',

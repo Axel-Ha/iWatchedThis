@@ -1,3 +1,5 @@
+import { Staffs } from "./media";
+
 export interface AnimesResponse {
     id: number;
     title: { romaji: string, english: string, native: string }
@@ -33,7 +35,7 @@ export interface AnimeResponse {
     animeSideBar: AnimeSideBarInfos;
     relations: AnimeRelations[];
     characters: charactersAndVoiceActors[];
-    staffs: staffs[];
+    staffs: Staffs[];
 }
 
 export interface AnimeHeader {
@@ -87,10 +89,4 @@ export interface charactersAndVoiceActors {
     }>;
 }
 
-export interface staffs {
-    role: string;
-    staff: {
-        name: { full: string };
-        image: { medium: string };
-    };
-}
+

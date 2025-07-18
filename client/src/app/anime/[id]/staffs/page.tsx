@@ -1,13 +1,13 @@
-'use client'
-
 import Staffs from '../../components/Staffs';
-import { getAnimeById } from '@/services/animesService';
+import { getStaffsByMediaId } from "@/services/mediaService";
 
 export default async function StaffsPage({ params }: { params: { id: string } }) {
-  const anime = await getAnimeById(params.id);
+  const mediaId = params.id;
+  const staffs = await getStaffsByMediaId(mediaId);
   return (
     <div>
-      <Staffs staffs={anime.staffs} animeId={params.id} />
+      <p>ID du media : {mediaId}</p>
+      <Staffs staffsMedia={staffs} animeId={mediaId} />
     </div>
   );
 }

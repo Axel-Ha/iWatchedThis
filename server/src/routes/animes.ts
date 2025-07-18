@@ -1,6 +1,7 @@
 import express from 'express';
-import { fetchTrendingAnime, fetchPopularAnime, fetchNextSeasonAnime, fetchCurrentSeasonAnime, fetchTopAnime, fetchAnimeById } from '../api/anilist'; // Adjust path if necessary
+import { fetchTrendingAnime, fetchPopularAnime, fetchNextSeasonAnime, fetchCurrentSeasonAnime, fetchTopAnime, fetchAnimeById, fetchStaffsByMediaId } from '../api/anilist'; // Adjust path if necessary
 import { mapAniListToAnimeResponse } from '../mappers/animeMapper';
+import { mapAniListStaffs } from '../mappers/mediaMapper';
 const router = express.Router();
 
 
@@ -77,6 +78,13 @@ router.get('/:id', async (req, res) => {
     console.error('Error fetching AniList data for ID:', req.params.id, error);
     res.status(500).json({ error: 'Failed to retrieve anime details due to a server error.' });
   }
+});
+
+router.get('/:id/staffs', async (req, res) => {
+  const id = parseInt(req.params.id);
+  const anilistMedia = await fetchStaffsByMediaId(id);
+  const staffs = anilistMedia && anilistMedia.staff ? mapAniListStaffs(anilistMedia.staff) : [];
+  res.json(staffs);
 });
 
 export default router;

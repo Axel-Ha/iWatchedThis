@@ -2,11 +2,13 @@ import BannerCardInformations from '../components/BannerCardInformations';
 import SideBarCardInformations from '../components/SideBarCardInformations';
 import { getAnimeById } from '@/services/animesService';
 import React from 'react';
+import { MediaProvider } from "@/components/contexts/MediaContext";
 
 export default async function Layout({ children, params }: { children: React.ReactNode, params: { id: string } }) {
   const anime = await getAnimeById(params.id);
   const { animeHeader } = anime;
   const { bannerImage } = animeHeader;
+  const mediaId = params.id;
 
   return (
     <div className="relative w-full min-h-screen bg-dark">
@@ -28,7 +30,9 @@ export default async function Layout({ children, params }: { children: React.Rea
           <SideBarCardInformations anime={anime} />
         </aside>
         <main className="flex-1">
-          {children}
+          <MediaProvider mediaId={mediaId}>
+            {children}
+          </MediaProvider>
         </main>
       </div>
     </div>

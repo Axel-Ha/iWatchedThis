@@ -12,7 +12,7 @@ export default async function OverviewPage({ params }: { params: Promise<{ id: s
             <div className="pl-50">
                 <Relations relations={relations} />
                 <Characters characters={characters} />
-                <Staffs staffs={staffs} animeId={resolvedParams.id} />
+                <Staffs staffsMedia={staffs} animeId={resolvedParams.id} />
             </div>
         </>
     );
