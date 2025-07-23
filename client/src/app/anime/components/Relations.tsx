@@ -22,7 +22,7 @@ const Relations = ({ relations }: RelationsProps) => {
             <div className="flex flex-row mt-5 mb-5">
                 {formattedRelations.map(({ type, titleEnglish, titleRomaji, mediaFormat, coverImage }, idx) => (
                     <div className="flex flex-col mr-5" key={idx}>
-                        <img src={coverImage} alt={titleRomaji} className="w-[85px] h-[115px] object-cover" />
+                        <img src={coverImage} alt={titleRomaji} className="w-[60px] h-[80px] object-cover" />
                         <span className="text-soft-blue">{titleRomaji}</span>
                     </div>
                 ))}

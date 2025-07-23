@@ -16,42 +16,44 @@ export default function SideBarCardInformationsProps({ anime }: SideBarCardInfor
     const animeStatus = status !== 'NOT_YET_RELEASED';
     const durationStatus = duration !== null
     return (
-        <div>
-            <ul>
-                <li>Format : {format}</li>
-                <li>Episodes : {episodes}</li>
-                <li>{durationStatus && (
-                    <p>Durée : {duration} minutes</p>
-                )}
-                </li>
-                <p>Status : {status} ({animeStatus ? 'Sorti' : 'À venir'})</p>
-                {/* <li>Start date : {season} {seasonYear}</li> */}
-                {/* <li>End Date : {season} {seasonYear}</li> */}
-                <li>Season : {season} {seasonYear}</li>
-                <li>Mean Score : {averageScore}</li>
-                <li>Popularity : {popularity}</li>
-                <li>Favorites : {favourites}</li>
-                <li>Studios : {studios.nodes.map((studio: { name: string }) => (
-                    <span key={studio.name} className="">{studio.name}</span>
-                ))}</li>
-                {/* <li>Producers : {studios.nodes.map((studio: { name: string }) => (
+        <>
+            <div className="flex flex-col gap-4 bg-banner-card p-4 rounded-lg">
+                <ul>
+                    <li>Format : {format}</li>
+                    <li>Episodes : {episodes}</li>
+                    <li>{durationStatus && (
+                        <p>Durée : {duration} minutes</p>
+                    )}
+                    </li>
+                    <p>Status : {status} ({animeStatus ? 'Sorti' : 'À venir'})</p>
+                    {/* <li>Start date : {season} {seasonYear}</li> */}
+                    {/* <li>End Date : {season} {seasonYear}</li> */}
+                    <li>Season : {season} {seasonYear}</li>
+                    <li>Mean Score : {averageScore}</li>
+                    <li>Popularity : {popularity}</li>
+                    <li>Favorites : {favourites}</li>
+                    <li>Studios : {studios.nodes.map((studio: { name: string }) => (
+                        <span key={studio.name} className="">{studio.name}</span>
+                    ))}</li>
+                    {/* <li>Producers : {studios.nodes.map((studio: { name: string }) => (
                     <span key={studio.name} className="text-sm text-soft-blue">{studio.name}</span>
                 ))}</li> */}
-                <li>Sources : {source}</li>
-                <li>Genres : {genres?.join(', ')}</li>
-                <li>Romaji : {title.romaji} </li>
-                <li>English : {title.english} </li>
-                <li>Native : {title.native} </li>
-                <li>Synonyms : {synonyms.map((synonym: string) => (
-                    <span key={synonym} className=" ">{synonym}</span>
-                ))}</li>
-            </ul>
-            <p className="text-soft-blue mt-5">Tags</p>
-            <div className="flex flex-col">
+                    <li>Sources : {source}</li>
+                    <li>Genres : {genres?.join(', ')}</li>
+                    <li>Romaji : {title.romaji} </li>
+                    <li>English : {title.english} </li>
+                    <li>Native : {title.native} </li>
+                    <li>Synonyms : {synonyms.map((synonym: string) => (
+                        <span key={synonym} className=" ">{synonym}</span>
+                    ))}</li>
+                </ul>
+            </div>
+            <div className="flex flex-col  p-4 rounded-lg">
+                <p className="text-soft-blue">Tags</p>
                 {tags.map((tag: { name: string, isMediaSpoiler: boolean, rank: number }) => (
-                    <span key={tag.name} className={`${tag.isMediaSpoiler ? 'text-soft-blue font-bold'  : ''}`}>{tag.name} {tag.isMediaSpoiler && 'Spoiler'} {tag.rank}</span>
+                    <span key={tag.name} className={`${tag.isMediaSpoiler ? 'text-soft-blue font-bold ' : ''} bg-banner-card`}>{tag.name} {tag.isMediaSpoiler && 'Spoiler'} {tag.rank}</span>
                 ))}
             </div>
-        </div>
+        </>
     );
 }

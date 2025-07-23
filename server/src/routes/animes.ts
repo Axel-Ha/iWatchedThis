@@ -82,7 +82,8 @@ router.get('/:id', async (req, res) => {
 
 router.get('/:id/staffs', async (req, res) => {
   const id = parseInt(req.params.id);
-  const anilistMedia = await fetchStaffsByMediaId(id);
+  const page = parseInt(req.query.page as string) || 1;
+  const anilistMedia = await fetchStaffsByMediaId(id, page);
   const staffs = anilistMedia && anilistMedia.staff ? mapAniListStaffs(anilistMedia.staff) : [];
   res.json(staffs);
 });

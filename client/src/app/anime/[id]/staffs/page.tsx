@@ -5,8 +5,7 @@ export default async function StaffsPage({ params }: { params: { id: string } })
   const mediaId = params.id;
   const staffs = await getStaffsByMediaId(mediaId);
   return (
-    <div>
-      <p>ID du media : {mediaId}</p>
+    <div className="pl-20 max-w-[1320px] mx-auto">
       <Staffs staffsMedia={staffs} animeId={mediaId} />
     </div>
   );

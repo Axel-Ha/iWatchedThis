@@ -9,7 +9,7 @@ export default async function OverviewPage({ params }: { params: Promise<{ id: s
     const { relations, characters, staffs } = anime;
     return (
         <>
-            <div className="pl-50">
+            <div className="pl-20 ">
                 <Relations relations={relations} />
                 <Characters characters={characters} />
                 <Staffs staffsMedia={staffs} animeId={resolvedParams.id} />

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { Staffs } from "../../../../../shared/definitions/media";
 import { useRouter } from "next/navigation";
+import Card from "./Card";
 
 type StaffsProps = {
     staffsMedia: Staffs[]
@@ -16,14 +17,16 @@ const Staffs = ({ staffsMedia, animeId }: StaffsProps) => {
     return (
         <div className="flex flex-col mt-10">
             <p onClick={() => router.push(`/anime/${animeId}/staffs`)} className="text-soft-blue">Staffs</p>
-            <div className="flex flex-row">
+            <div className="flex flex-row flex-wrap">
                 {staffs.length > 0 ? (
                     staffs.map((staff, idx) => (
-                        <div key={idx} className="flex flex-col mr-5">
-                            <img src={staff.staff.image.medium} alt={staff.staff.name.full} className="w-[85px] h-[115px] object-cover" />
-                            <span className="text-soft-blue">{staff.staff.name.full}</span>
-                            <span className="text-soft-blue">{staff.role}</span>
-                        </div>
+                        <Card
+                            name={staff.staff.name.full}
+                            image={staff.staff.image.medium}
+                            id={idx}
+                            role={staff.role}
+                            
+                        />
                     ))
                 ) : (
                     <p className="text-soft-blue">Aucun staff trouvé.</p>

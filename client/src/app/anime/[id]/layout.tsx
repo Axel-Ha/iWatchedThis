@@ -11,29 +11,27 @@ export default async function Layout({ children, params }: { children: React.Rea
   const mediaId = params.id;
 
   return (
-    <div className="relative w-full min-h-screen bg-dark">
-      {/* Bannière en haut */}
+    <div className="relative w-full min-h-screen">
       {bannerImage && (
-        <div className="w-full h-80 md:h-96 overflow-hidden">
+        <div className="w-full md:h-90 overflow-hidden">
           <img src={bannerImage} className="w-full h-full object-cover opacity-60" alt="Banner" />
         </div>
       )}
 
-      {/* Bloc principal SOUS la bannière, seule la cover dépasse */}
-      <div className="relative z-10 mx-auto">
+      <div className="max-w-[1320px] mx-auto">
         <BannerCardInformations anime={anime} />
-      </div>
-
-      {/* Grille principale sous le bloc principal */}
-      <div className="relative z-10 max-w-6xl mx-auto mt-8 flex flex-row gap-8">
-        <aside className="w-1/4">
-          <SideBarCardInformations anime={anime} />
-        </aside>
-        <main className="flex-1">
-          <MediaProvider mediaId={mediaId}>
-            {children}
-          </MediaProvider>
-        </main>
+        <div>
+          <div className="flex flex-row ">
+            <aside className="w-1/4">
+              <SideBarCardInformations anime={anime} />
+            </aside>
+            <main className="">
+              <MediaProvider mediaId={mediaId}>
+                {children}
+              </MediaProvider>
+            </main>
+          </div>
+        </div>
       </div>
     </div>
   );
